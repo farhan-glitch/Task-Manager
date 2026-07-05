@@ -1,13 +1,14 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 @font-face {
     font-family: "Vazirmatn";
-    src: url("../assets/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf")
+    src: url("../assets/fonts/Vazirmatn-VariableFont_wght.ttf")
         format("truetype");
     font-weight: 100 900;
     font-style: normal;
 }
 @theme {
-    font-sans: "Vazirmatn", sans-serif;
+    --font-sans: "Vazirmatn", sans-serif;
     /* Primary Colors */
     --color-primary: #007bff;
     /* Status Colors */
@@ -22,7 +23,7 @@
 }
 @layer base {
     body {
-        font-family: "Vazirmatn", sans-serif;
+        font-family: var(--font-sans);
     }
     .dark {
         --color-surface-primary: #060c18;
