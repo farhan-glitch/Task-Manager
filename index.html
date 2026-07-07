@@ -1,49 +1,272 @@
 <!doctype html>
 <html lang="en" dir="rtl">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Task Manager</title>
-        <link rel="stylesheet" href="./src/style/output.css" />
-    </head>
-    <body>
-        <!-- Header -->
-        <header
-            class="md:hidden grid grid-cols-3 shadow-md rounded-lg p-3 mx-4 mt-4 mb-6"
-        >
-            <button class="justify-self-start cursor-pointer">
-                <img
-                    src="./src/assets/icons/hamburgerMenu.svg"
-                    alt="burgerButton"
-                    class="w-6 h-6 dark:invert"
-                />
-            </button>
-            <div class="justify-self-center">
-                <h1 class="text-base font-bold">کوئرا لیست</h1>
-            </div>
-        </header>
-        <!-- Profile Photo -->
-        <div class="flex gap-3 mr-4 mb-7 md:mt-16 md:mr-6 md:mb-16">
-            <div>
-                <img
-                    src="./src/assets/icons/profilePhoto.svg"
-                    alt="photo"
-                    class="w-14 h-14"
-                />
-            </div>
-            <div>
-                <div class="text-lg font-extrabold mb-1">سلام، رویا</div>
-                <div class="text-sm font-semibold text-text-secondary">
-                    امروز، یکشنبه، 21 تیر 1405
-                </div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./src/style/output.css" />
+  </head>
+  <body class="bg-surface-primary text-text-primary">
+    <!-- Header -->
+    <header
+      class="mx-4 mt-4 mb-6 grid grid-cols-3 rounded-lg p-3 shadow-md md:hidden"
+    >
+      <button class="cursor-pointer justify-self-start">
+        <img
+          src="./src/assets/icons/hamburgerMenu.svg"
+          alt="burgerButton"
+          class="h-6 w-6 dark:invert"
+        />
+      </button>
+      <div class="justify-self-center">
+        <h1 class="text-base font-bold">کوئرا لیست</h1>
+      </div>
+    </header>
+    <!-- Profile Photo Mobile -->
+    <div class="mr-4 mb-7 flex gap-3 md:hidden">
+      <div>
+        <img
+          src="./src/assets/icons/profilePhoto.svg"
+          alt="photo"
+          class="h-14 w-14"
+        />
+      </div>
+      <div>
+        <div class="mb-1 text-lg font-extrabold">سلام، رویا</div>
+        <div class="text-text-secondary text-sm font-semibold">
+          امروز، یکشنبه، 21 تیر 1405
         </div>
-        <!-- Line -->
-        <hr class="border-[#c8cacd] mx-4 md:hidden" />
-        <!-- Overlay Page -->
-        <div></div>
-        <!-- Sidebar Page -->
-        <aside></aside>
-        <script type="module" src="./src/scripts/main.js"></script>
-    </body>
+      </div>
+    </div>
+    <!-- Line -->
+    <hr class="mx-4 border-[#c8cacd] md:hidden" />
+
+    <!-- Overlay Page -->
+    <div class="fixed inset-0 z-40 bg-black/60 md:hidden"></div>
+    <!-- Sidebar Page -->
+    <aside
+      class="bg-surface-primary fixed top-0 right-0 z-50 h-full w-[80%] translate-x-0 scrollbar-none overflow-x-hidden transition-transform duration-300 ease-in-out md:sticky md:mt-9 md:mr-5 md:mb-2 md:max-w-72 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
+    >
+      <div
+        class="mx-4 mt-4 mb-8 flex items-center justify-between p-3 md:hidden"
+      >
+        <span class="text-base font-bold">کوئرا لیست</span>
+        <img
+          src="./src/assets/icons/crossButton.svg"
+          alt="crossButton"
+          class="h-6 w-6 cursor-pointer dark:invert"
+        />
+      </div>
+      <!-- Profile Photo Desktop-->
+      <div class="mr-4 mb-7 hidden gap-3 md:mt-16 md:mr-6 md:mb-18 md:flex">
+        <div>
+          <img
+            src="./src/assets/icons/profilePhoto.svg"
+            alt="photo"
+            class="h-14 w-14"
+          />
+        </div>
+        <div>
+          <div class="mb-1 text-lg font-extrabold">سلام، رویا</div>
+          <div class="text-text-secondary text-sm font-semibold">
+            امروز، یکشنبه، 21 تیر 1405
+          </div>
+        </div>
+      </div>
+      <ul class="mb-36">
+        <li
+          class="hover:bg-primary/10 mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/home.svg"
+            alt="home"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/homeDark.svg"
+            alt="homeDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+
+          <span class="text-primary text-base font-bold dark:text-white"
+            >خانه</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/task.svg"
+            alt="task"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/taskDark.svg"
+            alt="taskDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تسک‌ها</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/calendar.svg"
+            alt="calendar"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/calendarDark.svg"
+            alt="calendarDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تقویم</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/reports.svg"
+            alt="reports"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/reportsDark.svg"
+            alt="reportsDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >گزارشات</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/setting.svg"
+            alt="setting"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/settingDark.svg"
+            alt="settingDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تنظیمات</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/support.svg"
+            alt="support"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/supportDark.svg"
+            alt="supportDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >پشتیبانی</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
+        >
+          <img
+            src="./src/assets/icons/profile.svg"
+            alt="profile"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/profileDark.svg"
+            alt="profileDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >پروفایل</span
+          >
+        </li>
+      </ul>
+      <!-- Theme Buttons -->
+      <div
+        class="bg-text-secondary/10 mr-8 mb-6 flex w-[80%] gap-1 rounded-lg p-1 dark:bg-[#0C1B31]"
+      >
+        <button
+          class="bg-surface-primary flex flex-1 cursor-pointer items-center justify-center gap-3 rounded-md py-2 pr-4 pl-5 dark:bg-[#0C1B31]"
+        >
+          <img
+            src="./src/assets/icons/sunLight.svg"
+            alt="sunLight"
+            class="block h-4 w-4 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/sunDark.svg"
+            alt="sunDark"
+            class="hidden h-4 w-4 dark:block"
+          />
+          <span
+            class="text-text-primary dark:text-text-secondary text-sm font-semibold"
+            >روشن</span
+          >
+        </button>
+        <button
+          class="flex flex-1 cursor-pointer items-center justify-center gap-3 rounded-md py-2 pr-4 pl-5 dark:bg-[#002247]"
+        >
+          <img
+            src="./src/assets/icons/moonLight.svg"
+            alt="moonLight"
+            class="block h-4 w-4 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/moonDark.svg"
+            alt="moonDark"
+            class="hidden h-4 w-4 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold dark:text-white"
+            >تاریک</span
+          >
+        </button>
+      </div>
+      <!-- Line -->
+      <hr class="mr-8 mb-6 w-[80%] border-[#c8cacd]" />
+      <!-- Logout -->
+      <div class="flex cursor-pointer gap-4 py-2 pr-9">
+        <div class="mb-9">
+          <img
+            src="./src/assets/icons/logoutLight.svg"
+            alt="logoutLight"
+            class="block dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/logoutDark.svg"
+            alt="logoutDark"
+            class="hidden dark:block"
+          />
+        </div>
+        <div>
+          <span
+            class="transition-colors duration-200 ease-in-out hover:text-red-500"
+            >خروج</span
+          >
+        </div>
+      </div>
+    </aside>
+    <script type="module" src="./src/scripts/main.js"></script>
+  </body>
 </html>

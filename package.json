@@ -5,5 +5,9 @@
     },
     "scripts": {
         "watch": "npx @tailwindcss/cli -i ./src/style/input.css -o ./src/style/output.css --watch"
+    },
+    "devDependencies": {
+        "prettier": "^3.9.4",
+        "prettier-plugin-tailwindcss": "^0.8.0"
     }
 }
