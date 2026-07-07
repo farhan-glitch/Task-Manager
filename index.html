@@ -1,13 +1,404 @@
 <!doctype html>
-<html lang="en" dir="rtl">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="./src/style/output.css" />
-    </head>
-    <body class="bg-surface-primary text-text-primary text-9xl dark">
-        Hello World!
-        <script type="module" src="./src/scripts/main.js"></script>
-    </body>
+<html lang="en" dir="rtl" class="font-sans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>کورا لیست - تسک منیجر</title>
+    <link rel="stylesheet" href="./src/style/output.css" />
+  </head>
+  <body class="font-sans text-text-primary bg-surface-primary">
+    <div
+      id="Responsive"
+      class="flex flex-col items-center justify-center m-3 md:flex md:items-center md:justify-center"
+    >
+      <!-- ====== SECTION 1: PENDING TASKS ====== -->
+      <section id="Rem-Tasks" class="w-full max-w-[328px] md:max-w-[744px]">
+        <div id="Today-Task-P" class="flex flex-col gap-1">
+          <p
+            class="font-extrabold text-[16px] mb-2 text-text-primary md:text-[20px]"
+          >
+            تسک‌های امروز
+          </p>
+          <p
+            class="font-extrabold text-[12px] text-text-secondary md:text-[14px]"
+          >
+            3 تسک را باید انجام دهید.
+          </p>
+        </div>
+
+        <!-- Add Task -->
+        <div
+          id="task-adder"
+          class="w-full h-[56px] flex flex-row justify-start items-center border-dashed border-2 border-[#cccccc] rounded-[15px] mt-6"
+        >
+          <button class="w-[24px] h-[24px] text-primary ml-1 mr-5">
+            <img src="./src/images/add.svg" alt="Add New Task" />
+          </button>
+          <input
+            class="w-[117px] h-[22px] font-semibold text-[14px] text-primary md:text-[16px] md:font-bold"
+            type="text"
+            placeholder="افزودن وظیفه جدید"
+          />
+        </div>
+
+        <!-- Task Card 1 -->
+        <div
+          id="Task-Card-1"
+          class="relative flex flex-row w-full h-[105px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="mb-14" type="checkbox" />
+          <div class="flex flex-col gap-2 mr-6 flex-1">
+            <div class="md:flex md:flex-row md:mb-4">
+              <h1
+                class="font-semibold text-[14px] text-text-primary md:mt-[2px] ml-[2px]"
+              >
+                جلسه با مدیران پروژه
+              </h1>
+              <div
+                class="w-[28px] h-[20px] pt-0.5 pb-0.5 pr-2 pl-2 gap-2 bg-[#FFE2DB] rounded-[3px] mt-1 md:mr-1"
+              >
+                <span
+                  class="flex justify-center items-center text-[10px] text-error text-center pt-1"
+                  >بالا</span
+                >
+              </div>
+            </div>
+            <p class="font-normal text-[12px] text-text-secondary">
+              جلسه با محسن یگانه و مریم جلالی
+            </p>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[76px] border-[1px] border-error rounded-t-[8px] rounded-b-[8px] bg-error absolute right-[-2px]"
+          ></div>
+        </div>
+
+        <!-- Task Card 2 -->
+        <div
+          id="Task-Card-2"
+          class="relative flex flex-row w-full h-[105px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="mb-14" type="checkbox" />
+          <div class="flex flex-col gap-2 mr-6 flex-1">
+            <div class="md:flex md:flex-row md:mb-4">
+              <h1
+                class="font-semibold text-[14px] text-text-primary md:mt-[2px] ml-[2px]"
+              >
+                خرید میوه و سبزیجات و لبنیات برای خانه
+              </h1>
+              <div
+                class="w-[38px] h-[20px] pt-0.5 pb-0.5 pr-2 pl-2 gap-2 bg-[#FFE2D6] rounded-[3px] mt-1 md:mr-1"
+              >
+                <span
+                  class="flex justify-center items-center text-[10px] text-warning text-center pt-1"
+                  >متوسط</span
+                >
+              </div>
+            </div>
+            <p class="font-normal text-[12px] text-text-secondary">
+              سوپرمارکت یاران دریایی
+            </p>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[76px] border-[1px] border-warning rounded-t-[8px] rounded-b-[8px] bg-warning absolute right-[-2px]"
+          ></div>
+        </div>
+
+        <!-- Task Card 3 -->
+        <div
+          id="Task-Card-3"
+          class="relative flex flex-row w-full h-[105px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="mb-14" type="checkbox" />
+          <div class="flex flex-col gap-2 mr-6 flex-1">
+            <div class="md:flex md:flex-row md:mb-4">
+              <h1
+                class="font-semibold text-[14px] text-text-primary md:mt-[2px] ml-[2px]"
+              >
+                تماس با جمشید
+              </h1>
+              <div
+                class="w-[33px] h-[20px] pt-0.5 pb-0.5 pr-2 pl-2 gap-2 bg-[#C3FFF1] rounded-[3px] mt-1 md:mr-1"
+              >
+                <span
+                  class="flex justify-center items-center text-[10px] text-success text-center pt-1"
+                  >پایین</span
+                >
+              </div>
+            </div>
+            <p class="font-normal text-[12px] text-text-secondary">
+              باید در مورد کارهای باقیمانده از پروژه قبلی صحبت کنیم.
+            </p>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[76px] border-[1px] border-success rounded-t-[8px] rounded-b-[8px] bg-success absolute right-[-2px]"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 2: COMPLETED TASKS ====== -->
+      <section
+        id="Completed-Items"
+        class="w-full max-w-[328px] md:max-w-[744px] mt-8"
+      >
+        <div id="Today-Task-P" class="flex flex-col gap-1">
+          <p
+            class="font-extrabold text-[16px] mb-2 text-text-primary md:text-[20px]"
+          >
+            تسک‌های انجام شده
+          </p>
+          <p
+            class="font-extrabold text-[12px] text-text-secondary md:text-[14px]"
+          >
+            3 تسک انجام شده است.
+          </p>
+        </div>
+
+        <!-- Completed Task Card 1 -->
+        <div
+          id="Completed-Task-Card-1"
+          class="relative flex flex-row w-full h-[66px] border-[1px] items-center border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="-mt-1" type="checkbox" checked />
+          <div class="flex flex-col mr-6 flex-1">
+            <h1
+              class="font-semibold text-[14px] line-through text-text-secondary w-[210px]"
+            >
+              خرید میوه و سبزیجات و لبنیات برای خانه
+            </h1>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[42px] border-[1px] border-warning rounded-t-[8px] rounded-b-[8px] bg-warning absolute right-[-2px]"
+          ></div>
+        </div>
+
+        <!-- Completed Task Card 2 -->
+        <div
+          id="Completed-Task-Card-2"
+          class="relative flex flex-row w-full h-[66px] border-[1px] items-center border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="-mt-1" type="checkbox" checked />
+          <div class="flex flex-col mr-6 flex-1">
+            <h1
+              class="font-semibold text-[14px] line-through text-text-secondary w-[210px]"
+            >
+              تماس با مبل فروشی در مورد تاخیر در ارسال
+            </h1>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[42px] border-[1px] border-error rounded-t-[8px] rounded-b-[8px] bg-error absolute right-[-2px]"
+          ></div>
+        </div>
+
+        <!-- Completed Task Card 3 -->
+        <div
+          id="Completed-Task-Card-3"
+          class="relative flex flex-row w-full h-[66px] border-[1px] items-center border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4"
+        >
+          <input class="-mt-1" type="checkbox" checked />
+          <div class="flex flex-col mr-6 flex-1">
+            <h1
+              class="font-semibold text-[14px] line-through text-text-secondary w-[210px]"
+            >
+              جلسه با مرتضی در مورد مصاحبه با کارآموز ادمین پنل
+            </h1>
+          </div>
+          <button class="absolute top-3 left-3">
+            <img
+              class="w-[4px] h-[18px]"
+              src="./src/images/option.svg"
+              alt="Edit-Task"
+            />
+          </button>
+          <div
+            class="w-[4px] h-[42px] border-[1px] border-success rounded-t-[8px] rounded-b-[8px] bg-success absolute right-[-2px]"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 3: NO TASK (STATE) ====== -->
+      <section
+        id="No-Task"
+        class="flex flex-col justify-center items-center w-full max-w-[328px] md:max-w-[744px] mt-8"
+      >
+        <img
+          class="w-[201px] h-[172px] opacity-50 mt-[25px] md:w-[283px] md:h-[232px]"
+          src="./src/images/No Task.svg"
+          alt="No-Task"
+        />
+        <div
+          class="w-full max-w-[273px] h-[71px] mt-[15px] flex flex-col justify-center items-center"
+        >
+          <h1 class="font-extrabold text-[16px] text-text-primary">
+            چه کارهایی امروز برای انجام داری؟
+          </h1>
+          <p
+            class="w-full max-w-[273px] h-[44px] font-semibold text-[14px] text-text-secondary opacity-70 mt-[10px] text-center"
+          >
+            میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
+          </p>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 4: ADDING TASK PREVIEW ====== -->
+      <section
+        id="Adding-Task"
+        class="w-full max-w-[328px] md:max-w-[744px] mt-[25px]"
+      >
+        <div
+          class="w-[328px] h-[228px] border border-[#E9E9E9] rounded-[12px] pt-[16px] pb-[16px] gap-4 md:w-[744px] md:h-[219px]"
+        >
+          <div class="flex flex-col justify-start w-full mt-[10px] pr-[16px]">
+            <h2
+              class="font-semibold text-[14px] text-text-primary pr-[6px] md:text-[16px]"
+            >
+              جلسه با مدیر محصول جدید
+            </h2>
+            <p
+              class="font-normal text-[12px] text-text-secondary mt-[4px] mt-[10px] pr-[6px] md:text-[14px]"
+            >
+              بررسی جوانب طراح محصول جدید، در گفت و گو با مدیران برتر
+            </p>
+          </div>
+          <div class="pr-[16px]">
+            <span
+              class="inline-flex items-center gap-1 bg-[#FFE2DB] px-2 py-0.5 rounded-[4px] mt-2"
+            >
+              <img
+                class="w-4 h-4"
+                src="./src/images/Mark.svg"
+                alt="Delete-Tag"
+              />
+              <span class="text-[14px] font-semibold text-error">بالا</span>
+            </span>
+          </div>
+          <div
+            class="border-[0.4px] border-[#E9E9E9] w-[328px] m-0 mt-5 md:w-[744px]"
+          ></div>
+          <div class="flex justify-end items-center mt-7 m-3 md:mt-4">
+            <button class="ml-2">
+              <img
+                class="rounded-[6px] bg-[#F5F5F5] p-1.5"
+                src="./src/images/Mark.svg"
+                alt="Delete-Task"
+              />
+            </button>
+            <button
+              class="pt-1.5 pb-1.5 pr-4 pl-4 gap-3 rounded-[6px] bg-primary text-white font-semibold text-[12px] self-center md:text-[14px] hover:bg-blue-600 transition"
+            >
+              اضافه کردن تسک
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 5: CREATING TASK ====== -->
+      <section
+        id="Creating-Task"
+        class="w-full max-w-[328px] md:max-w-[744px] mt-[25px]"
+      >
+        <div
+          class="w-[328px] h-[250px] border border-[#E9E9E9] rounded-[12px] pt-[16px] pb-[16px] gap-4 md:w-[744px] md:h-[250px]"
+        >
+          <div class="flex flex-col justify-start w-full mt-[10px] pr-[16px]">
+            <h2
+              class="font-semibold text-[14px] text-text-secondary pr-[6px] md:text-[16px]"
+            >
+              نام تسک
+            </h2>
+            <p
+              class="font-normal text-[12px] text-text-secondary mt-[4px] mt-[10px] pr-[6px] md:text-[14px]"
+            >
+              توضیحات
+            </p>
+          </div>
+          <div
+            class="w-[65px] h-[27px] border border-[#E9E9E9] pt-1 pb-1 pr-2 pl-2 rounded-[4px] flex mr-4 mt-4"
+          >
+            <img class="w-4 h-4" src="./src/images/Tag.svg" alt="Tags" />
+            <span class="text-[12px] text-text-secondary font-semibold mr-1.5"
+              >تگ‌ها</span
+            >
+          </div>
+          <div
+            class="pr-[16px] flex border border-[#EBEDEF] w-[216px] h-[43px] rounded-[8px] pr-[10px] pl-[10px] pb-[10px] justify-around items-center gap-[11px] mt-3 mr-3 pl-[40px] md:w-[248px] md:gap-[16px]"
+          >
+            <span
+              class="inline-flex items-center bg-[#C3FFF1] px-2 py-0.5 rounded-[4px]"
+            >
+              <span class="text-[14px] font-semibold text-success">پایین</span>
+            </span>
+            <div
+              class="w-[20px] h-[20px] border border-[#EBEDEF] self-center"
+            ></div>
+            <span
+              class="inline-flex items-center bg-[#FFEFD6] px-2 py-0.5 rounded-[4px]"
+            >
+              <span class="text-[14px] font-semibold text-warning">متوسط</span>
+            </span>
+            <div
+              class="w-[20px] h-[20px] border border-[#EBEDEF] self-center"
+            ></div>
+            <span
+              class="inline-flex items-center bg-[#FFE2DB] px-2 py-0.5 rounded-[4px]"
+            >
+              <span class="text-[14px] font-semibold text-error">بالا</span>
+            </span>
+          </div>
+          <div
+            class="border-[0.4px] border-[#E9E9E9] w-[328px] m-0 mt-5 md:w-[744px]"
+          ></div>
+          <div class="flex justify-end items-center mt-3 m-3 md:mt-2">
+            <button class="ml-2">
+              <img
+                class="rounded-[6px] bg-[#F5F5F5] p-1.5"
+                src="./src/images/Mark.svg"
+                alt="Delete-Task"
+              />
+            </button>
+            <button
+              class="pt-1.5 pb-1.5 pr-4 pl-4 gap-3 rounded-[6px] bg-primary text-white font-semibold text-[12px] self-center md:text-[14px] hover:bg-blue-600 transition"
+            >
+              اضافه کردن تسک
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="./src/scripts/main.js"></script>
+  </body>
 </html>

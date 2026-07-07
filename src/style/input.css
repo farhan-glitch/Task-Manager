@@ -1,31 +1,31 @@
 @import "tailwindcss";
 @font-face {
-    font-family: "Vazirmatn";
-    src: url("../assets/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf")
-        format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: "Vazirmatn";
+  src: url("../assets/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 @theme {
-    font-sans: "Vazirmatn", sans-serif;
-    /* Primary Colors */
-    --color-primary: #007bff;
-    /* Status Colors */
-    --color-error: #ff5f37;
-    --color-warning: #ffaf37;
-    --color-success: #11a483;
-    /* Background & Surfaces */
-    --color-surface-primary: #ffffff;
-    /* Text & Icons */
-    --color-text-primary: #242424;
-    --color-text-secondary: #7d7d7f;
+  --font-sans: "Vazirmatn", sans-serif;
+  /* Primary Colors */
+  --color-primary: #007bff;
+  /* Status Colors */
+  --color-error: #ff5f37;
+  --color-warning: #ffaf37;
+  --color-success: #11a483;
+  /* Background & Surfaces */
+  --color-surface-primary: #ffffff;
+  /* Text & Icons */
+  --color-text-primary: #242424;
+  --color-text-secondary: #7d7d7f;
 }
 @layer base {
-    body {
-        font-family: "Vazirmatn", sans-serif;
-    }
-    .dark {
-        --color-surface-primary: #060c18;
-        --color-text-primary: #ffffff;
-    }
+  body {
+    font-family: "Vazirmatn", sans-serif;
+  }
+  .dark {
+    --color-surface-primary: #060c18;
+    --color-text-primary: #ffffff;
+  }
 }
