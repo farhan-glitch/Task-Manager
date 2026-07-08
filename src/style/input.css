@@ -2,7 +2,7 @@
 @custom-variant dark (&:is(.dark *));
 @font-face {
     font-family: "Vazirmatn";
-    src: url("../assets/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf")
+    src: url("../assets/fonts/Vazirmatn-VariableFont_wght.ttf")
         format("truetype");
     font-weight: 100 900;
     font-style: normal;
