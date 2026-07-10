@@ -9,9 +9,9 @@
   <body class="bg-surface-primary text-text-primary">
     <!-- Header -->
     <header
-      class="mx-4 mt-4 mb-6 grid grid-cols-3 rounded-lg p-3 shadow-md md:hidden"
+      class="mx-4 mt-4 mb-6 grid grid-cols-3 rounded-lg p-3 shadow-md md:hidden dark:bg-[#091120]"
     >
-      <button class="cursor-pointer justify-self-start">
+      <button id="open-menu-btn" class="cursor-pointer justify-self-start">
         <img
           src="./src/assets/icons/hamburgerMenu.svg"
           alt="burgerButton"
@@ -38,24 +38,32 @@
         </div>
       </div>
     </div>
+
     <!-- Line -->
     <hr class="mx-4 border-[#c8cacd] md:hidden dark:hidden" />
 
     <!-- Overlay Page -->
-    <div class="fixed inset-0 z-40 bg-black/60 md:hidden"></div>
+    <div
+      id="overlay"
+      class="pointer-events-none fixed inset-0 z-40 bg-black/60 opacity-0 transition-opacity duration-300 ease-in-out md:hidden"
+    ></div>
+
     <!-- Sidebar Page -->
     <aside
-      class="bg-surface-primary fixed top-0 right-0 z-50 h-full w-[80%] translate-x-0 scrollbar-none overflow-x-hidden transition-transform duration-300 ease-in-out md:sticky md:mt-9 md:mr-5 md:mb-2 md:max-w-72 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
+      id="drawer-menu"
+      class="bg-surface-primary fixed top-0 right-0 z-50 h-full w-[80%] translate-x-full scrollbar-none overflow-x-hidden transition-transform duration-800 ease-in-out md:sticky md:z-auto md:mt-9 md:mr-5 md:mb-2 md:w-72 md:translate-x-0 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
     >
       <div
         class="mx-4 mt-4 mb-8 flex items-center justify-between p-3 md:hidden"
       >
         <span class="text-base font-bold">کوئرا لیست</span>
-        <img
-          src="./src/assets/icons/crossButton.svg"
-          alt="crossButton"
-          class="h-6 w-6 cursor-pointer dark:invert"
-        />
+        <button id="close-menu-btn">
+          <img
+            src="./src/assets/icons/crossButton.svg"
+            alt="crossButton"
+            class="h-6 w-6 cursor-pointer dark:invert"
+          />
+        </button>
       </div>
       <!-- Profile Photo Desktop-->
       <div class="mr-4 mb-7 hidden gap-3 md:mt-16 md:mr-6 md:mb-18 md:flex">
@@ -73,6 +81,7 @@
           </div>
         </div>
       </div>
+      <!-- Items -->
       <ul class="mb-36">
         <li
           class="hover:bg-primary/10 mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition-colors duration-300"
