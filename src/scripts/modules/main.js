@@ -12,6 +12,7 @@ const yellowClose = document.getElementById("yellowClose");
 const greenClose = document.getElementById("greenClose");
 
 const allClose = [yellowClose, redClose, greenClose];
+
 const img = document.getElementById("img");
 const tags = document.getElementById("tags");
 const buttons = document.getElementById("buttons");
@@ -28,6 +29,14 @@ const expression = document.getElementById("expression");
 const checkedCount = document.getElementById("checkedCount");
 const doneTasks = document.getElementById("doneTasks");
 const NoTask = document.getElementById("No-Task");
+
+//=====================
+let tasksList = JSON.parse(localStorage.getItem("tasksList")) || [];
+
+function saveTasks() {
+  localStorage.setItem("tasksList", JSON.stringify(tasksList));
+}
+//====================
 
 addingTask.addEventListener("click", () => {
   addingTask.classList.add("hidden");
@@ -113,6 +122,11 @@ submit.addEventListener("click", () => {
   const colorBorder = getSelectedColor();
   const badge = getSelectedBadge();
 
+  //==========================
+  const taskId = Date.now();
+  tasks.dataset.id = taskId;
+  //==========================
+
   tasks.className =
     "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
   tasks.innerHTML = `
@@ -137,6 +151,18 @@ submit.addEventListener("click", () => {
 `;
   readTask.appendChild(tasks);
 
+  //===========================
+  tasksList.push({
+    id: taskId,
+    name: taskName.value,
+    expression: expression.value,
+    colorBorder: colorBorder,
+    badge: badge,
+    checked: false,
+  });
+  saveTasks();
+  //============================
+
   creatTask.classList.add("hidden");
   addingTask.classList.remove("hidden");
 
@@ -152,6 +178,14 @@ submit.addEventListener("click", () => {
   const taskExp = tasks.querySelector("p");
 
   checkBox.addEventListener("change", () => {
+    //===========================
+    const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
+    if (savedTask) {
+      savedTask.checked = checkBox.checked;
+      saveTasks();
+    }
+    //============================
+
     if (checkBox.checked) {
       taskTitle.classList.add("line-through");
       taskBadge.style.display = "none";
@@ -225,3 +259,74 @@ function updatPicture() {
     NoTask.classList.remove("hidden");
   }
 }
+
+//================================
+function loadTasks() {
+  tasksList.forEach((task) => {
+    const tasks = document.createElement("div");
+    tasks.dataset.id = task.id;
+
+    tasks.className =
+      "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
+    tasks.innerHTML = `
+  <input class="mt-1 self-start" type="checkbox" ${task.checked ? "checked" : ""} />
+  <div class="flex flex-col gap-2 mr-6 flex-1">
+    <div class="md:flex md:flex-row md:mb-4">
+      <h1 class="font-semibold text-[14px] text-text-primary md:mt-[2px] ml-[2px] ${task.checked ? "line-through" : ""}">
+        ${task.name}
+      </h1>
+      <div class="inline-flex justify-center items-center pt-0.5 pb-0.5 pr-2 pl-2 gap-2 ${task.badge.bg} rounded-[4px] h-5 mt-1 md:mr-1" style="${task.checked ? "display:none" : ""}">
+        <span class="flex justify-center items-center text-[10px] ${task.badge.color} text-center pt-1">${task.badge.text}</span>
+      </div>
+    </div>
+    <p class="font-normal text-[12px] text-text-secondary ${task.checked ? "hidden" : ""}">
+      ${task.expression}
+    </p>
+  </div>
+  <button class="absolute top-3 left-3">
+    <img class="w-[4px] h-[18px]" src="./src/images/option.svg" alt="Edit-Task" />
+  </button>
+  <div class="w-[4px] h-[75%] border-[1px] ${task.colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${task.colorBorder.bg} absolute right-[-2px]"></div>
+`;
+
+    if (task.checked) {
+      doneTasks.appendChild(tasks);
+    } else {
+      readTask.appendChild(tasks);
+    }
+
+    const checkBox = tasks.querySelector("input[type='checkbox']");
+    const taskTitle = tasks.querySelector("h1");
+    const taskBadge = tasks.querySelector("div.inline-flex");
+    const taskExp = tasks.querySelector("p");
+
+    checkBox.addEventListener("change", () => {
+      const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
+      if (savedTask) {
+        savedTask.checked = checkBox.checked;
+        saveTasks();
+      }
+
+      if (checkBox.checked) {
+        taskTitle.classList.add("line-through");
+        taskBadge.style.display = "none";
+        taskExp.classList.add("hidden");
+        doneTasks.appendChild(tasks);
+      } else {
+        taskTitle.classList.remove("line-through");
+        taskBadge.style.display = "";
+        taskExp.classList.remove("hidden");
+        readTask.appendChild(tasks);
+      }
+
+      updateCounter();
+      updateDoneCounter();
+    });
+  });
+
+  updateCounter();
+  updateDoneCounter();
+  updatPicture();
+}
+
+loadTasks();
