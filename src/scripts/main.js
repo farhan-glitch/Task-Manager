@@ -1,4 +1,8 @@
 import { initDrawer } from "./modules/drawerMenu.js";
-initDrawer();
 import { themeToggle } from "./modules/theme.js";
-themeToggle();
+import { dateFormatter } from "./modules/dateFormatter.js";
+document.addEventListener("DOMContentLoaded", () => {
+  initDrawer();
+  themeToggle();
+  dateFormatter();
+});
