@@ -1,4 +1,4 @@
-export const initCreateTasks = () => {
+export const initCreateReadTasks = () => {
   const addingTask = document.getElementById("task-adder");
   const creatTask = document.getElementById("creatTask");
 
