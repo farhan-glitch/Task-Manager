@@ -1,253 +1,475 @@
 <!doctype html>
 <html lang="fa-IR" dir="rtl">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Task Manager</title>
-        <link rel="stylesheet" href="./src/style/output.css" />
-    </head>
-    <body class="text-text-primary bg-surface-primary">
-        <!-- Header -->
-        <header
-            class="md:hidden grid grid-cols-3 shadow-md rounded-lg p-3 mx-4 mt-4 mb-6"
-        >
-            <button class="justify-self-start cursor-pointer">
-                <img
-                    src="./src/assets/icons/hamburgerMenu.svg"
-                    alt="burgerButton"
-                    class="w-6 h-6 dark:invert"
-                />
-            </button>
-            <div class="justify-self-center">
-                <h1 class="text-base font-bold">کوئرا لیست</h1>
-            </div>
-        </header>
-        <!-- Profile Photo -->
-        <div class="flex gap-3 mr-4 mb-7 md:mt-16 md:mr-6 md:mb-16 md:hidden">
-            <div>
-                <img
-                    src="./src/assets/icons/profilePhoto.svg"
-                    alt="photo"
-                    class="w-14 h-14"
-                />
-            </div>
-            <div>
-                <div class="text-lg font-extrabold mb-1">سلام، رویا</div>
-                <div class="text-sm font-semibold text-text-secondary">
-                    امروز، یکشنبه، 21 تیر 1405
-                </div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./src/style/output.css" />
+    <script src="./src/scripts/modules/themeLocalStorage.js"></script>
+  </head>
+  <body
+    class="bg-surface-primary text-text-primary flex flex-col transition duration-300 ease-in-out md:flex-row"
+  >
+    <!-- Header -->
+    <header
+      class="bg-surface-primary mx-4 mt-4 mb-6 grid grid-cols-3 rounded-lg p-3 shadow-md transition duration-300 ease-in-out md:hidden dark:bg-[#091120]"
+    >
+      <button id="open-menu-btn" class="cursor-pointer justify-self-start">
+        <img
+          src="./src/assets/icons/hamburgerMenu.svg"
+          alt="burgerButton"
+          class="h-6 w-6 dark:invert"
+        />
+      </button>
+      <div class="justify-self-center">
+        <h1 class="text-base font-bold">کوئرا لیست</h1>
+      </div>
+    </header>
+    <!-- Overlay Page -->
+    <div
+      id="overlay"
+      class="pointer-events-none fixed inset-0 z-40 bg-black/60 opacity-0 backdrop-blur-3xl transition duration-300 ease-in-out md:hidden"
+    ></div>
+    <!-- Profile Photo Mobile -->
+    <div class="mr-4 mb-7 flex gap-3 md:hidden">
+      <div>
+        <img
+          src="./src/assets/icons/profilePhoto.svg"
+          alt="photo"
+          class="h-14 w-14"
+        />
+      </div>
+      <div>
+        <div class="mb-1 text-lg font-extrabold">سلام، رویا</div>
+        <div id="header-date" class="text-text-secondary text-sm font-semibold">
+          امروز، یکشنبه، 21 تیر 1405
         </div>
-        <!-- Line -->
-        <hr class="border-[#c8cacd] mx-4 md:hidden" />
-        <!-- Dashboard -->
+      </div>
+    </div>
+    <!-- Line -->
+    <hr class="mx-4 mb-8 border-[#c8cacd] md:hidden dark:hidden" />
+    <!-- Sidebar Page -->
+    <aside
+      id="drawer-menu"
+      class="bg-surface-primary fixed top-0 right-0 z-50 h-screen w-[80%] translate-x-full scrollbar-none self-start overflow-x-hidden transition duration-300 ease-in-out md:sticky md:z-auto md:my-9 md:mr-5 md:h-fit md:w-72 md:translate-x-0 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
+    >
+      <div
+        class="mx-4 mt-4 mb-8 flex items-center justify-between p-3 md:hidden"
+      >
+        <span class="text-base font-bold">کوئرا لیست</span>
+        <button id="close-menu-btn">
+          <img
+            src="./src/assets/icons/crossButton.svg"
+            alt="crossButton"
+            class="h-6 w-6 cursor-pointer dark:invert"
+          />
+        </button>
+      </div>
+      <!-- Profile Photo Desktop-->
+      <div class="mr-4 mb-7 hidden gap-3 md:mt-16 md:mr-6 md:mb-18 md:flex">
+        <div>
+          <img
+            src="./src/assets/icons/profilePhoto.svg"
+            alt="photo"
+            class="h-14 w-14"
+          />
+        </div>
+        <div>
+          <div class="mb-1 text-lg font-extrabold">سلام، رویا</div>
+          <div
+            id="desktop-date"
+            class="text-text-secondary text-sm font-semibold"
+          >
+            امروز، یکشنبه، 21 تیر 1405
+          </div>
+        </div>
+      </div>
+      <!-- Items -->
+      <ul class="mb-36">
+        <li
+          class="hover:bg-primary/10 mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/home.svg"
+            alt="home"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/homeDark.svg"
+            alt="homeDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+
+          <span class="text-primary text-base font-bold dark:text-white"
+            >خانه</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/task.svg"
+            alt="task"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/taskDark.svg"
+            alt="taskDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تسک‌ها</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/calendar.svg"
+            alt="calendar"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/calendarDark.svg"
+            alt="calendarDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تقویم</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/reports.svg"
+            alt="reports"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/reportsDark.svg"
+            alt="reportsDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >گزارشات</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/setting.svg"
+            alt="setting"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/settingDark.svg"
+            alt="settingDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >تنظیمات</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 mb-6 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/support.svg"
+            alt="support"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/supportDark.svg"
+            alt="supportDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >پشتیبانی</span
+          >
+        </li>
+        <li
+          class="hover:bg-primary/10 group mx-4 flex cursor-pointer items-center gap-4 rounded-lg py-3 pr-5 transition duration-300 ease-in-out"
+        >
+          <img
+            src="./src/assets/icons/profile.svg"
+            alt="profile"
+            class="block h-5 w-5 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/profileDark.svg"
+            alt="profileDark"
+            class="hidden h-5 w-5 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold group-hover:text-blue-400 dark:text-white"
+            >پروفایل</span
+          >
+        </li>
+      </ul>
+      <!-- Theme Buttons -->
+      <div
+        class="bg-text-secondary/10 mr-8 mb-6 flex w-[80%] gap-1 rounded-lg p-1 dark:bg-[#0C1B31]"
+      >
+        <button
+          id="light-btn"
+          class="bg-surface-primary flex flex-1 cursor-pointer items-center justify-center gap-3 rounded-md py-2 pr-4 pl-5 dark:bg-[#0C1B31]"
+        >
+          <img
+            src="./src/assets/icons/sunLight.svg"
+            alt="sunLight"
+            class="block h-4 w-4 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/sunDark.svg"
+            alt="sunDark"
+            class="hidden h-4 w-4 dark:block"
+          />
+          <span
+            class="text-text-primary dark:text-text-secondary text-sm font-semibold"
+            >روشن</span
+          >
+        </button>
+        <button
+          id="dark-btn"
+          class="flex flex-1 cursor-pointer items-center justify-center gap-3 rounded-md py-2 pr-4 pl-5 dark:bg-[#002247]"
+        >
+          <img
+            src="./src/assets/icons/moonLight.svg"
+            alt="moonLight"
+            class="block h-4 w-4 dark:hidden"
+          />
+          <img
+            src="./src/assets/icons/moonDark.svg"
+            alt="moonDark"
+            class="hidden h-4 w-4 dark:block"
+          />
+          <span
+            class="text-text-secondary text-sm font-semibold dark:text-white"
+            >تاریک</span
+          >
+        </button>
+      </div>
+      <!-- Line -->
+      <hr class="mr-8 mb-6 w-[80%] border-[#c8cacd]" />
+      <!-- Logout -->
+      <div class="flex cursor-pointer gap-4 py-2 pr-9">
+        <div class="relative mb-9 h-5 w-5">
+          <img
+            src="./src/assets/icons/logoutLight.svg"
+            alt="logoutLight"
+            class="absolute inset-0 opacity-100 transition-opacity duration-300 dark:opacity-0"
+          />
+          <img
+            src="./src/assets/icons/logoutDark.svg"
+            alt="logoutDark"
+            class="absolute inset-0 opacity-0 transition-opacity duration-300 dark:opacity-100"
+          />
+        </div>
+        <div>
+          <span class="transition duration-300 ease-in-out hover:text-red-500"
+            >خروج</span
+          >
+        </div>
+      </div>
+    </aside>
+    <!-- Dashboard -->
+    <main
+      id="Responsive"
+      class="mx-auto flex min-h-screen w-full flex-col items-center justify-center px-4 md:flex md:max-w-3xl md:items-center md:justify-center"
+    >
+      <!-- ====== SECTION 1: PENDING TASKS ====== -->
+      <section id="Rem-Tasks" class="w-full">
+        <div id="Today-Task-P" class="flex flex-col gap-1 md:mt-21">
+          <p
+            class="text-text-primary mb-2 text-[16px] font-extrabold md:text-[20px]"
+          >
+            تسک‌های امروز
+          </p>
+          <p
+            id="counter"
+            class="text-text-secondary text-[12px] font-extrabold md:text-[14px]"
+          >
+            تسکی برای امروز ندارید!
+          </p>
+        </div>
+
+        <!-- Add Task -->
         <div
-            id="Responsive"
-            class="flex flex-col items-center justify-center m-3 md:flex md:items-center md:justify-center"
+          id="task-adder"
+          class="mt-6 flex h-14 w-full flex-row items-center justify-start rounded-2xl border-2 border-dashed border-[#cccccc] transition-all duration-300 hover:bg-gray-50"
         >
-            <!-- ====== SECTION 1: PENDING TASKS ====== -->
-            <section id="Rem-Tasks" class="w-full max-w-82 md:max-w-186">
-                <div id="Today-Task-P" class="flex flex-col gap-1">
-                    <p
-                        class="font-extrabold text-[16px] mb-2 text-text-primary md:text-[20px]"
-                    >
-                        تسک‌های امروز
-                    </p>
-                    <p
-                        id="counter"
-                        class="font-extrabold text-[12px] text-text-secondary md:text-[14px]"
-                    >
-                        تسکی برای امروز ندارید!
-                    </p>
-                </div>
-
-                <!-- Add Task -->
-                <div
-                    id="task-adder"
-                    class="w-full h-[56px] flex flex-row justify-start items-center border-dashed border-2 border-[#cccccc] rounded-[15px] mt-6 cursor-pointer"
-                >
-                    <button class="w-[24px] h-[24px] text-primary ml-1 mr-5">
-                        <img
-                            src="./src/images/add.svg"
-                            alt="Add New Task"
-                            class="cursor-pointer"
-                        />
-                    </button>
-                    <p
-                        class="w-[117px] h-[22px] md:w-[131px] font-semibold text-[14px] text-primary md:text-[16px] md:font-bold"
-                    >
-                        افزودن وظیفه جدید
-                    </p>
-                </div>
-                <!--======================Adding-Task-Box========================-->
-                <section>
-                    <div
-                        class="hidden bg-[#FFFFFF] shadow-md m-auto border-2 rounded-[12px] border-[#E9E9E9] mt-10 w-[328px] text-center md:w-[744px]"
-                        id="creatTask"
-                    >
-                        <input
-                            type="text"
-                            id="taskName"
-                            placeholder="نام تسک"
-                            class="placeholder-[#7D7D7F] outline-none pr-2 pt-4 w-[310px] md:w-[725px] font-semibold text-[14px] border-none"
-                        />
-                        <br />
-                        <textarea
-                            type="text"
-                            id="expression"
-                            placeholder="توضیحات"
-                            class="placeholder-[#AFAEB2] pr-2 pt-4 outline-none w-[310px] md:w-[725px] text-[12px] border-none resize-none"
-                        ></textarea>
-
-                        <br /><br />
-                        <button
-                            id="tags"
-                            class="w-[65px] h-[27px] mr-4 flex gap-2 border-[1px] border-[#E9E9E9] justify-center items-center rounded-[4px] cursor-pointer"
-                        >
-                            <img
-                                src="./src/images/tag-right-1.svg"
-                                class="w-4 h-4"
-                                alt="img"
-                                id="img"
-                            />
-                            <p class="font-semibold text-[12px] text-[#AFAEB2]">
-                                تگ‌ها
-                            </p>
-                        </button>
-
-                        <div
-                            class="flex mr-4 mt-6 w-[213px] bg-white p-2 gap-2 hidden border-[1px] border-[#EBEDEF] rounded-[8px]"
-                            id="buttons"
-                        >
-                            <button
-                                id="greenButton"
-                                class="bg-[#C3FFF1] p-2 rounded-[4px] text-[#11A483] flex justify-center items-center mb-auto gap-1 px-3 py-1 cursor-pointer"
-                            >
-                                <img
-                                    src="./src/images/Mark.svg"
-                                    id="greenClose"
-                                    class="hidden w-4 h-4"
-                                />
-                                <p class="text-[12px] font-bold">پایین</p>
-                            </button>
-
-                            <div
-                                class="w-px mx-1 bg-[#EBEDEF]"
-                                id="line1"
-                            ></div>
-
-                            <button
-                                id="yellowButton"
-                                class="bg-[#FFEFD6] p-2 rounded-[4px] text-[#FFAF37] flex justify-center items-center mb-auto gap-1 px-3 py-1 cursor-pointer"
-                            >
-                                <img
-                                    src="./src/images/Mark.svg"
-                                    id="yellowClose"
-                                    class="hidden w-4 h-4"
-                                />
-                                <p class="text-[12px] font-bold">متوسط</p>
-                            </button>
-
-                            <div
-                                class="w-px mx-1 bg-[#EBEDEF]"
-                                id="line2"
-                            ></div>
-
-                            <button
-                                id="redButton"
-                                class="bg-[#FFE2DB] p-2 rounded-[4px] text-[#FF5F37] flex justify-center items-center mb-auto gap-1 px-3 py-1 cursor-pointer"
-                            >
-                                <img
-                                    src="./src/images/Mark.svg"
-                                    id="redClose"
-                                    class="hidden w-4 h-4"
-                                />
-                                <p class="text-[12px] font-bold">بالا</p>
-                            </button>
-                        </div>
-                        <br />
-
-                        <hr class="border-[#E9E9E9]" />
-
-                        <div class="flex gap-4 m-4 justify-end">
-                            <button
-                                id="deleteAdd"
-                                class="w-8 h-8 bg-[#F5F5F5] hover:bg-gray-300 rounded-md cursor-pointer"
-                            >
-                                <img
-                                    src="./src/images/delete.svg"
-                                    alt="img"
-                                    class="h-[10px] w-[10px] flex justify-center items-center m-auto"
-                                />
-                            </button>
-
-                            <button
-                                id="submit"
-                                disabled
-                                class="w-[121px] h-[31px] text-[12px] font-semibold rounded-md text-white hover:enabled:bg-blue-700 bg-blue-300 cursor-pointer"
-                            >
-                                اضافه کردن تسک
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <div
-                    id="readTask"
-                    class="flex flex-col gap-2 m-4 w-[328px] md:w-[744px] m-auto"
-                ></div>
-
-                <section
-                    id="No-Task"
-                    class="flex flex-col justify-center items-center w-full max-w-[328px] md:max-w-[744px] mt-8"
-                >
-                    <img
-                        class="w-[201px] h-[172px] opacity-50 mt-[25px] md:w-[283px] md:h-[232px]"
-                        src="./src/images/No Task.svg"
-                        alt="No-Task"
-                    />
-                    <div
-                        class="w-full max-w-[273px] h-[71px] mt-[15px] flex flex-col justify-center items-center"
-                    >
-                        <h1
-                            class="font-extrabold text-[16px] text-text-primary"
-                        >
-                            چه کارهایی امروز برای انجام داری؟
-                        </h1>
-                        <p
-                            class="w-full max-w-[273px] h-[44px] font-semibold text-[14px] text-text-secondary opacity-70 mt-[10px] text-center"
-                        >
-                            میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو
-                            شروع کنی!
-                        </p>
-                    </div>
-                </section>
-            </section>
-            <!-- ====== SECTION 2: COMPLETED TASKS ====== -->
-            <section
-                id="Completed-Items"
-                class="w-full max-w-[328px] md:max-w-[744px] mt-8"
-            >
-                <div id="Today-Task-P" class="flex flex-col gap-1">
-                    <p
-                        class="font-extrabold text-[16px] mb-2 text-text-primary md:text-[20px]"
-                    >
-                        تسک‌های انجام شده
-                    </p>
-                    <p
-                        id="checkedCount"
-                        class="font-extrabold text-[12px] text-text-secondary md:text-[14px]"
-                    ></p>
-                </div>
-                <div
-                    id="doneTasks"
-                    class="flex flex-col gap-2 m-4 w-[328px] md:w-[744px] min-h-[66px]"
-                ></div>
-            </section>
+          <button class="text-primary mr-5 ml-1 h-6 w-6 cursor-pointer">
+            <img
+              src="./src/assets/icons/add.svg"
+              alt="Add New Task"
+              class="cursor-pointer"
+            />
+          </button>
+          <p
+            class="text-primary h-5.5 w-full text-sm font-semibold focus:outline-none md:text-base md:font-bold"
+          >
+            افزودن وظیفه جدید
+          </p>
         </div>
-        <script
-            type="module"
-            src="./src/scripts/modules/createTasks.js"
-        ></script>
-    </body>
+        <!--======================Adding-Task-Box========================-->
+        <section>
+          <div
+            class="m-auto mt-10 hidden w-[328px] rounded-[12px] border-2 border-[#E9E9E9] bg-[#FFFFFF] text-center shadow-md md:w-[744px]"
+            id="creatTask"
+          >
+            <input
+              type="text"
+              id="taskName"
+              placeholder="نام تسک"
+              class="w-[310px] border-none pt-4 pr-2 text-[14px] font-semibold placeholder-[#7D7D7F] outline-none md:w-[725px]"
+            />
+            <br />
+            <textarea
+              type="text"
+              id="expression"
+              placeholder="توضیحات"
+              class="w-[310px] resize-none border-none pt-4 pr-2 text-[12px] placeholder-[#AFAEB2] outline-none md:w-[725px]"
+            ></textarea>
+
+            <br /><br />
+            <button
+              id="tags"
+              class="mr-4 flex h-[27px] w-[65px] cursor-pointer items-center justify-center gap-2 rounded-[4px] border-[1px] border-[#E9E9E9]"
+            >
+              <img
+                src="./src/images/tag-right-1.svg"
+                class="h-4 w-4"
+                alt="img"
+                id="img"
+              />
+              <p class="text-[12px] font-semibold text-[#AFAEB2]">تگ‌ها</p>
+            </button>
+
+            <div
+              class="mt-6 mr-4 flex hidden w-[213px] gap-2 rounded-[8px] border-[1px] border-[#EBEDEF] bg-white p-2"
+              id="buttons"
+            >
+              <button
+                id="greenButton"
+                class="mb-auto flex cursor-pointer items-center justify-center gap-1 rounded-[4px] bg-[#C3FFF1] p-2 px-3 py-1 text-[#11A483]"
+              >
+                <img
+                  src="./src/images/Mark.svg"
+                  id="greenClose"
+                  class="hidden h-4 w-4"
+                />
+                <p class="text-[12px] font-bold">پایین</p>
+              </button>
+
+              <div class="mx-1 w-px bg-[#EBEDEF]" id="line1"></div>
+
+              <button
+                id="yellowButton"
+                class="mb-auto flex cursor-pointer items-center justify-center gap-1 rounded-[4px] bg-[#FFEFD6] p-2 px-3 py-1 text-[#FFAF37]"
+              >
+                <img
+                  src="./src/images/Mark.svg"
+                  id="yellowClose"
+                  class="hidden h-4 w-4"
+                />
+                <p class="text-[12px] font-bold">متوسط</p>
+              </button>
+
+              <div class="mx-1 w-px bg-[#EBEDEF]" id="line2"></div>
+
+              <button
+                id="redButton"
+                class="mb-auto flex cursor-pointer items-center justify-center gap-1 rounded-[4px] bg-[#FFE2DB] p-2 px-3 py-1 text-[#FF5F37]"
+              >
+                <img
+                  src="./src/images/Mark.svg"
+                  id="redClose"
+                  class="hidden h-4 w-4"
+                />
+                <p class="text-[12px] font-bold">بالا</p>
+              </button>
+            </div>
+            <br />
+
+            <hr class="border-[#E9E9E9]" />
+
+            <div class="m-4 flex justify-end gap-4">
+              <button
+                id="deleteAdd"
+                class="h-8 w-8 cursor-pointer rounded-md bg-[#F5F5F5] hover:bg-gray-300"
+              >
+                <img
+                  src="./src/images/delete.svg"
+                  alt="img"
+                  class="m-auto flex h-[10px] w-[10px] items-center justify-center"
+                />
+              </button>
+
+              <button
+                id="submit"
+                disabled
+                class="h-[31px] w-[121px] cursor-pointer rounded-md bg-blue-300 text-[12px] font-semibold text-white hover:enabled:bg-blue-700"
+              >
+                اضافه کردن تسک
+              </button>
+            </div>
+          </div>
+        </section>
+        <div
+          id="readTask"
+          class="m-4 m-auto flex w-[328px] flex-col gap-2 md:w-[744px]"
+        ></div>
+
+        <section
+          id="No-Task"
+          class="mx-auto mt-8 flex w-full max-w-[328px] flex-col items-center justify-center md:max-w-[744px]"
+        >
+          <img
+            class="mt-[25px] h-[172px] w-[201px] opacity-50 md:h-[232px] md:w-[283px]"
+            src="./src/assets/icons/No Task.svg"
+            alt="No-Task"
+          />
+          <div
+            class="mt-[15px] flex h-[71px] w-full max-w-[273px] flex-col items-center justify-center"
+          >
+            <h1 class="text-text-primary text-[16px] font-extrabold">
+              چه کارهایی امروز برای انجام داری؟
+            </h1>
+            <p
+              class="text-text-secondary mt-[10px] h-[44px] w-full max-w-[273px] text-center text-[14px] font-semibold opacity-70"
+            >
+              میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
+            </p>
+          </div>
+        </section>
+      </section>
+      <!-- ====== SECTION 2: COMPLETED TASKS ====== -->
+      <section id="Completed-Items" class="w-full">
+        <div id="Today-Task-P" class="flex flex-col gap-1">
+          <p
+            class="text-text-primary mb-2 text-[16px] font-extrabold md:text-[20px]"
+          >
+            تسک‌های انجام شده
+          </p>
+          <p
+            id="checkedCount"
+            class="text-text-secondary text-[12px] font-extrabold md:text-[14px]"
+          ></p>
+        </div>
+        <div
+          id="doneTasks"
+          class="m-4 flex min-h-[66px] w-[328px] flex-col gap-2 md:w-[744px]"
+        ></div>
+      </section>
+    </main>
+    <script type="module" src="./src/scripts/main.js"></script>
+  </body>
 </html>

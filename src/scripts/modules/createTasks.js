@@ -1,121 +1,122 @@
-const addingTask = document.getElementById("task-adder");
-const creatTask = document.getElementById("creatTask");
+export const initCreateTasks = () => {
+  const addingTask = document.getElementById("task-adder");
+  const creatTask = document.getElementById("creatTask");
 
-const yellowButton = document.getElementById("yellowButton");
-const greenButton = document.getElementById("greenButton");
-const redButton = document.getElementById("redButton");
+  const yellowButton = document.getElementById("yellowButton");
+  const greenButton = document.getElementById("greenButton");
+  const redButton = document.getElementById("redButton");
 
-const allButtons = [yellowButton, redButton, greenButton];
+  const allButtons = [yellowButton, redButton, greenButton];
 
-const redClose = document.getElementById("redClose");
-const yellowClose = document.getElementById("yellowClose");
-const greenClose = document.getElementById("greenClose");
+  const redClose = document.getElementById("redClose");
+  const yellowClose = document.getElementById("yellowClose");
+  const greenClose = document.getElementById("greenClose");
 
-const allClose = [yellowClose, redClose, greenClose];
+  const allClose = [yellowClose, redClose, greenClose];
 
-const img = document.getElementById("img");
-const tags = document.getElementById("tags");
-const buttons = document.getElementById("buttons");
+  const img = document.getElementById("img");
+  const tags = document.getElementById("tags");
+  const buttons = document.getElementById("buttons");
 
-const deleteAdd = document.getElementById("deleteAdd");
+  const deleteAdd = document.getElementById("deleteAdd");
 
-const line1 = document.getElementById("line1");
-const line2 = document.getElementById("line2");
+  const line1 = document.getElementById("line1");
+  const line2 = document.getElementById("line2");
 
-const submit = document.getElementById("submit");
-const taskName = document.getElementById("taskName");
-const expression = document.getElementById("expression");
+  const submit = document.getElementById("submit");
+  const taskName = document.getElementById("taskName");
+  const expression = document.getElementById("expression");
 
-const checkedCount = document.getElementById("checkedCount");
-const doneTasks = document.getElementById("doneTasks");
-const NoTask = document.getElementById("No-Task");
+  const checkedCount = document.getElementById("checkedCount");
+  const doneTasks = document.getElementById("doneTasks");
+  const NoTask = document.getElementById("No-Task");
 
-//=====================
-let tasksList = JSON.parse(localStorage.getItem("tasksList")) || [];
+  //=====================
+  let tasksList = JSON.parse(localStorage.getItem("tasksList")) || [];
 
-function saveTasks() {
+  function saveTasks() {
     localStorage.setItem("tasksList", JSON.stringify(tasksList));
-}
-//====================
+  }
+  //====================
 
-addingTask.addEventListener("click", () => {
+  addingTask.addEventListener("click", () => {
     addingTask.classList.add("hidden");
     creatTask.classList.remove("hidden");
     updatPicture();
-});
+  });
 
-tags.addEventListener("click", () => {
+  tags.addEventListener("click", () => {
     if (img.src.includes("src/images/tag-right-1.svg")) {
-        img.src = "./src/images/tag-right-2.svg";
+      img.src = "./src/images/tag-right-2.svg";
     } else {
-        img.src = "./src/images/tag-right-1.svg";
+      img.src = "./src/images/tag-right-1.svg";
     }
 
     buttons.classList.toggle("hidden");
-});
+  });
 
-deleteAdd.addEventListener("click", () => {
+  deleteAdd.addEventListener("click", () => {
     creatTask.classList.toggle("hidden");
     addingTask.classList.toggle("hidden");
     updatPicture();
-});
+  });
 
-function selectButton(selected, closeIcon) {
+  function selectButton(selected, closeIcon) {
     allButtons.forEach((btn) => {
-        if (btn !== selected) {
-            btn.classList.add("hidden");
-        }
+      if (btn !== selected) {
+        btn.classList.add("hidden");
+      }
     });
     closeIcon.classList.remove("hidden");
     buttons.classList.remove("border-[1px]", "border-[#EBEDEF]");
     line1.classList.add("hidden");
     line2.classList.add("hidden");
     checkForm();
-}
+  }
 
-yellowButton.addEventListener("click", () =>
+  yellowButton.addEventListener("click", () =>
     selectButton(yellowButton, yellowClose),
-);
-redButton.addEventListener("click", () => selectButton(redButton, redClose));
-greenButton.addEventListener("click", () =>
+  );
+  redButton.addEventListener("click", () => selectButton(redButton, redClose));
+  greenButton.addEventListener("click", () =>
     selectButton(greenButton, greenClose),
-);
+  );
 
-allClose.forEach((closeIcon, i) => {
+  allClose.forEach((closeIcon, i) => {
     closeIcon.addEventListener("click", (e) => {
-        e.stopPropagation();
-        allButtons.forEach((btn) => btn.classList.remove("hidden"));
-        closeIcon.classList.add("hidden");
-        line1.classList.remove("hidden");
-        line2.classList.remove("hidden");
-        buttons.classList.add("border-[1px]", "border-[#EBEDEF]");
-        checkForm();
+      e.stopPropagation();
+      allButtons.forEach((btn) => btn.classList.remove("hidden"));
+      closeIcon.classList.add("hidden");
+      line1.classList.remove("hidden");
+      line2.classList.remove("hidden");
+      buttons.classList.add("border-[1px]", "border-[#EBEDEF]");
+      checkForm();
     });
-});
+  });
 
-taskName.addEventListener("input", checkForm);
+  taskName.addEventListener("input", checkForm);
 
-expression.addEventListener("input", checkForm);
+  expression.addEventListener("input", checkForm);
 
-function checkForm() {
+  function checkForm() {
     const colorSelected = allClose.some((c) => !c.classList.contains("hidden"));
     if (taskName.value !== "" && expression.value !== "" && colorSelected) {
-        submit.disabled = false;
-        submit.classList.remove("bg-blue-300");
-        submit.classList.add("bg-[#007BFF]");
+      submit.disabled = false;
+      submit.classList.remove("bg-blue-300");
+      submit.classList.add("bg-[#007BFF]");
     } else {
-        submit.disabled = true;
-        submit.classList.remove("bg-[#007BFF]");
-        submit.classList.add("bg-blue-300");
+      submit.disabled = true;
+      submit.classList.remove("bg-[#007BFF]");
+      submit.classList.add("bg-blue-300");
     }
-}
+  }
 
-const readTask = document.getElementById("readTask");
-submit.addEventListener("click", () => {
+  const readTask = document.getElementById("readTask");
+  submit.addEventListener("click", () => {
     const colorSelected = allClose.some((c) => !c.classList.contains("hidden"));
 
     if (taskName.value === "" || expression.value === "" || !colorSelected) {
-        return;
+      return;
     }
 
     const tasks = document.createElement("div");
@@ -128,7 +129,7 @@ submit.addEventListener("click", () => {
     //==========================
 
     tasks.className =
-        "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
+      "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
     tasks.innerHTML = `
   <input class="mt-1 self-start" type="checkbox" />
   <div class="flex flex-col gap-2 mr-6 flex-1">
@@ -153,12 +154,12 @@ submit.addEventListener("click", () => {
 
     //===========================
     tasksList.push({
-        id: taskId,
-        name: taskName.value,
-        expression: expression.value,
-        colorBorder: colorBorder,
-        badge: badge,
-        checked: false,
+      id: taskId,
+      name: taskName.value,
+      expression: expression.value,
+      colorBorder: colorBorder,
+      badge: badge,
+      checked: false,
     });
     saveTasks();
     //============================
@@ -178,97 +179,97 @@ submit.addEventListener("click", () => {
     const taskExp = tasks.querySelector("p");
 
     checkBox.addEventListener("change", () => {
-        //===========================
-        const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
-        if (savedTask) {
-            savedTask.checked = checkBox.checked;
-            saveTasks();
-        }
-        //============================
+      //===========================
+      const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
+      if (savedTask) {
+        savedTask.checked = checkBox.checked;
+        saveTasks();
+      }
+      //============================
 
-        if (checkBox.checked) {
-            taskTitle.classList.add("line-through");
-            taskBadge.style.display = "none";
-            taskExp.classList.add("hidden");
-            doneTasks.appendChild(tasks);
-        } else {
-            taskTitle.classList.remove("line-through");
-            taskBadge.style.display = "";
-            taskExp.classList.remove("hidden");
-            readTask.appendChild(tasks);
-        }
+      if (checkBox.checked) {
+        taskTitle.classList.add("line-through");
+        taskBadge.style.display = "none";
+        taskExp.classList.add("hidden");
+        doneTasks.appendChild(tasks);
+      } else {
+        taskTitle.classList.remove("line-through");
+        taskBadge.style.display = "";
+        taskExp.classList.remove("hidden");
+        readTask.appendChild(tasks);
+      }
 
-        updateCounter();
-        updateDoneCounter();
-        updateNoTaskVisibility();
+      updateCounter();
+      updateDoneCounter();
+      updateNoTaskVisibility();
     });
 
     checkForm();
     updatPicture();
     updateCounter();
     updateDoneCounter();
-});
+  });
 
-function getSelectedColor() {
+  function getSelectedColor() {
     if (!redClose.classList.contains("hidden"))
-        return { border: "border-error", bg: "bg-error" };
+      return { border: "border-error", bg: "bg-error" };
     if (!yellowClose.classList.contains("hidden"))
-        return { border: "border-warning", bg: "bg-warning" };
+      return { border: "border-warning", bg: "bg-warning" };
     if (!greenClose.classList.contains("hidden"))
-        return { border: "border-success", bg: "bg-success" };
-}
+      return { border: "border-success", bg: "bg-success" };
+  }
 
-function getSelectedBadge() {
+  function getSelectedBadge() {
     if (!redClose.classList.contains("hidden")) {
-        return { text: "بالا", bg: "bg-[#FFE2DB]", color: "text-error" };
+      return { text: "بالا", bg: "bg-[#FFE2DB]", color: "text-error" };
     }
     if (!yellowClose.classList.contains("hidden")) {
-        return { text: "متوسط", bg: "bg-[#FFEFD6]", color: "text-warning" };
+      return { text: "متوسط", bg: "bg-[#FFEFD6]", color: "text-warning" };
     }
     if (!greenClose.classList.contains("hidden")) {
-        return { text: "پایین", bg: "bg-[#C3FFF1]", color: "text-success" };
+      return { text: "پایین", bg: "bg-[#C3FFF1]", color: "text-success" };
     }
-}
+  }
 
-const counter = document.getElementById("counter");
+  const counter = document.getElementById("counter");
 
-function updateCounter() {
+  function updateCounter() {
     const count = readTask.children.length;
     if (count !== 0) {
-        counter.textContent = `${count} تسک را باید انجام دهید`;
+      counter.textContent = `${count} تسک را باید انجام دهید`;
     } else {
-        counter.textContent = "تسکی برای امروز ندارید!";
+      counter.textContent = "تسکی برای امروز ندارید!";
     }
     updatPicture();
-}
+  }
 
-function updateDoneCounter() {
+  function updateDoneCounter() {
     const count = doneTasks.children.length;
 
     checkedCount.textContent = `${count} تسک را انجام دادید`;
     updatPicture();
-}
+  }
 
-function updatPicture() {
+  function updatPicture() {
     const boxIsOpen = !creatTask.classList.contains("hidden");
     const hasTasks = readTask.children.length > 0;
 
     if (boxIsOpen || hasTasks) {
-        NoTask.classList.add("hidden");
+      NoTask.classList.add("hidden");
     } else {
-        NoTask.classList.remove("hidden");
+      NoTask.classList.remove("hidden");
     }
-}
+  }
 
-//================================
-function loadTasks() {
+  //================================
+  function loadTasks() {
     tasksList.forEach((task) => {
-        const tasks = document.createElement("div");
-        tasks.dataset.id = task.id;
+      const tasks = document.createElement("div");
+      tasks.dataset.id = task.id;
 
-        tasks.className =
-            "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
-        tasks.innerHTML = `
+      tasks.className =
+        "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
+      tasks.innerHTML = `
   <input class="mt-1 self-start" type="checkbox" ${task.checked ? "checked" : ""} />
   <div class="flex flex-col gap-2 mr-6 flex-1">
     <div class="md:flex md:flex-row md:mb-4">
@@ -289,44 +290,45 @@ function loadTasks() {
   <div class="w-[4px] h-[75%] border-[1px] ${task.colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${task.colorBorder.bg} absolute right-[-2px]"></div>
 `;
 
-        if (task.checked) {
-            doneTasks.appendChild(tasks);
-        } else {
-            readTask.appendChild(tasks);
+      if (task.checked) {
+        doneTasks.appendChild(tasks);
+      } else {
+        readTask.appendChild(tasks);
+      }
+
+      const checkBox = tasks.querySelector("input[type='checkbox']");
+      const taskTitle = tasks.querySelector("h1");
+      const taskBadge = tasks.querySelector("div.inline-flex");
+      const taskExp = tasks.querySelector("p");
+
+      checkBox.addEventListener("change", () => {
+        const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
+        if (savedTask) {
+          savedTask.checked = checkBox.checked;
+          saveTasks();
         }
 
-        const checkBox = tasks.querySelector("input[type='checkbox']");
-        const taskTitle = tasks.querySelector("h1");
-        const taskBadge = tasks.querySelector("div.inline-flex");
-        const taskExp = tasks.querySelector("p");
+        if (checkBox.checked) {
+          taskTitle.classList.add("line-through");
+          taskBadge.style.display = "none";
+          taskExp.classList.add("hidden");
+          doneTasks.appendChild(tasks);
+        } else {
+          taskTitle.classList.remove("line-through");
+          taskBadge.style.display = "";
+          taskExp.classList.remove("hidden");
+          readTask.appendChild(tasks);
+        }
 
-        checkBox.addEventListener("change", () => {
-            const savedTask = tasksList.find((t) => t.id == tasks.dataset.id);
-            if (savedTask) {
-                savedTask.checked = checkBox.checked;
-                saveTasks();
-            }
-
-            if (checkBox.checked) {
-                taskTitle.classList.add("line-through");
-                taskBadge.style.display = "none";
-                taskExp.classList.add("hidden");
-                doneTasks.appendChild(tasks);
-            } else {
-                taskTitle.classList.remove("line-through");
-                taskBadge.style.display = "";
-                taskExp.classList.remove("hidden");
-                readTask.appendChild(tasks);
-            }
-
-            updateCounter();
-            updateDoneCounter();
-        });
+        updateCounter();
+        updateDoneCounter();
+      });
     });
 
     updateCounter();
     updateDoneCounter();
     updatPicture();
-}
+  }
 
-loadTasks();
+  loadTasks();
+};
