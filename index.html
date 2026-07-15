@@ -8,7 +8,7 @@
     <script src="./src/scripts/modules/themeLocalStorage.js"></script>
   </head>
   <body
-    class="bg-surface-primary text-text-primary flex flex-col transition duration-300 ease-in-out md:flex-row"
+    class="bg-surface-primary text-text-primary flex min-h-screen flex-col overflow-x-hidden transition duration-300 ease-in-out md:flex-row md:gap-10"
   >
     <!-- Header -->
     <header
@@ -47,11 +47,11 @@
       </div>
     </div>
     <!-- Line -->
-    <hr class="mx-4 mb-8 border-[#c8cacd] md:hidden dark:hidden" />
+    <hr class="mx-4 border-[#c8cacd] md:hidden dark:hidden" />
     <!-- Sidebar Page -->
     <aside
       id="drawer-menu"
-      class="bg-surface-primary fixed top-0 right-0 z-50 h-screen w-[80%] translate-x-full scrollbar-none self-start overflow-x-hidden transition duration-300 ease-in-out md:sticky md:z-auto md:my-9 md:mr-5 md:h-fit md:w-72 md:translate-x-0 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
+      class="bg-surface-primary fixed top-0 right-0 z-50 h-screen w-[80%] translate-x-full scrollbar-none self-start overflow-x-hidden transition duration-300 ease-in-out md:sticky md:my-9 md:mr-5 md:h-fit md:w-72 md:shrink-0 md:translate-x-0 md:rounded-2xl md:shadow-2xl dark:bg-[#091120]"
     >
       <div
         class="mx-4 mt-4 mb-8 flex items-center justify-between p-3 md:hidden"
@@ -283,11 +283,11 @@
     <!-- Dashboard -->
     <main
       id="Responsive"
-      class="mx-auto flex min-h-screen w-full flex-col items-center justify-center px-4 md:flex md:max-w-3xl md:items-center md:justify-center"
+      class="mx-auto flex w-full flex-col overflow-x-hidden px-4 md:max-w-3xl"
     >
       <!-- ====== SECTION 1: PENDING TASKS ====== -->
       <section id="Rem-Tasks" class="w-full">
-        <div id="Today-Task-P" class="flex flex-col gap-1 md:mt-21">
+        <div id="Today-Task-P" class="mt-8 flex flex-col gap-1 md:mt-21">
           <p
             class="text-text-primary mb-2 text-[16px] font-extrabold md:text-[20px]"
           >
@@ -318,27 +318,27 @@
         <!--======================Adding-Task-Box========================-->
         <section>
           <div
-            class="m-auto mt-10 hidden w-[328px] rounded-[12px] border-2 border-[#E9E9E9] bg-[#FFFFFF] text-center shadow-md md:w-[744px]"
+            class="mx-auto mt-10 hidden w-full max-w-[328px] rounded-[12px] border-2 border-[#E9E9E9] bg-[#FFFFFF] text-center shadow-md md:max-w-[744px]"
             id="creatTask"
           >
             <input
               type="text"
               id="taskName"
               placeholder="نام تسک"
-              class="w-[310px] border-none pt-4 pr-2 text-[14px] font-semibold placeholder-[#7D7D7F] outline-none md:w-[725px]"
+              class="w-full max-w-[310px] border-none pt-4 pr-2 text-[14px] font-semibold placeholder-[#7D7D7F] outline-none md:max-w-[725px]"
             />
             <br />
             <textarea
               type="text"
               id="expression"
               placeholder="توضیحات"
-              class="w-[310px] resize-none border-none pt-4 pr-2 text-[12px] placeholder-[#AFAEB2] outline-none md:w-[725px]"
+              class="w-full max-w-[310px] resize-none border-none pt-4 pr-2 text-[12px] placeholder-[#AFAEB2] outline-none md:max-w-[725px]"
             ></textarea>
 
             <br /><br />
             <button
               id="tags"
-              class="mr-4 flex h-[27px] w-[65px] cursor-pointer items-center justify-center gap-2 rounded-[4px] border-[1px] border-[#E9E9E9]"
+              class="mr-4 flex h-[27px] w-full max-w-[65px] cursor-pointer items-center justify-center gap-2 rounded-[4px] border-[1px] border-[#E9E9E9]"
             >
               <img
                 src="./src/assets/icons/tag-right-1.svg"
@@ -350,7 +350,7 @@
             </button>
 
             <div
-              class="mt-6 mr-4 flex hidden w-[213px] gap-2 rounded-[8px] border-[1px] border-[#EBEDEF] bg-white p-2"
+              class="mt-6 mr-4 flex hidden w-full max-w-[213px] gap-2 rounded-[8px] border-[1px] border-[#EBEDEF] bg-white p-2"
               id="buttons"
             >
               <button
@@ -412,7 +412,7 @@
               <button
                 id="submit"
                 disabled
-                class="h-[31px] w-[121px] cursor-pointer rounded-md bg-blue-300 text-[12px] font-semibold text-white hover:enabled:bg-blue-700"
+                class="h-[31px] w-full max-w-[121px] cursor-pointer rounded-md bg-blue-300 text-[12px] font-semibold text-white hover:enabled:bg-blue-700"
               >
                 اضافه کردن تسک
               </button>
@@ -421,7 +421,7 @@
         </section>
         <div
           id="readTask"
-          class="m-4 m-auto flex w-[328px] flex-col gap-2 md:w-[744px]"
+          class="mx-auto mt-4 flex w-full max-w-[328px] flex-col gap-2 md:max-w-[744px]"
         ></div>
 
         <section
@@ -451,7 +451,7 @@
       <section id="Completed-Items" class="w-full">
         <div id="Today-Task-P" class="flex flex-col gap-1">
           <p
-            class="text-text-primary mb-2 text-[16px] font-extrabold md:text-[20px]"
+            class="text-text-primary mt-8 mb-2 text-[16px] font-extrabold md:mt-12 md:text-[20px]"
           >
             تسک‌های انجام شده
           </p>
@@ -462,7 +462,7 @@
         </div>
         <div
           id="doneTasks"
-          class="m-4 flex min-h-[66px] w-[328px] flex-col gap-2 md:w-[744px]"
+          class="mx-4 flex min-h-[66px] w-full max-w-[328px] flex-col gap-2 md:max-w-[744px]"
         ></div>
       </section>
     </main>

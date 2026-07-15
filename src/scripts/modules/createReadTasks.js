@@ -48,10 +48,10 @@ export const initCreateReadTasks = () => {
   });
 
   tags.addEventListener("click", () => {
-    if (img.src.includes("src/images/tag-right-1.svg")) {
-      img.src = "./src/images/tag-right-2.svg";
+    if (img.src.includes("src/assets/icons/tag-right-1.svg")) {
+      img.src = "./src/assets/icons/tag-right-2.svg";
     } else {
-      img.src = "./src/images/tag-right-1.svg";
+      img.src = "./src/assets/icons/tag-right-1.svg";
     }
 
     buttons.classList.toggle("hidden");
@@ -148,7 +148,7 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
 
-  <button class="optionBtn absolute top-3 left-3">
+  <button class="optionBtn absolute top-3 left-3 cursor-pointer">
     <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
 
@@ -179,7 +179,15 @@ export const initCreateReadTasks = () => {
     saveTasks();
     //============================
 
-    setupTaskOptions(tasks, newTaskObj, tasksList, saveTasks, updateCounter, updateDoneCounter, updatPicture);
+    setupTaskOptions(
+      tasks,
+      newTaskObj,
+      tasksList,
+      saveTasks,
+      updateCounter,
+      updateDoneCounter,
+      updatPicture,
+    );
 
     creatTask.classList.add("hidden");
     addingTask.classList.remove("hidden");
@@ -308,7 +316,7 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
 
-  <button class="optionBtn absolute top-3 left-3">
+  <button class="optionBtn absolute top-3 left-3 cursor-pointer">
     <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
 
@@ -365,7 +373,15 @@ export const initCreateReadTasks = () => {
         updateDoneCounter();
       });
 
-      setupTaskOptions(tasks, task, tasksList, saveTasks, updateCounter, updateDoneCounter, updatPicture);
+      setupTaskOptions(
+        tasks,
+        task,
+        tasksList,
+        saveTasks,
+        updateCounter,
+        updateDoneCounter,
+        updatPicture,
+      );
     });
 
     updateCounter();
