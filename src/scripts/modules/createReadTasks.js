@@ -146,7 +146,7 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
   <button class="absolute top-3 left-3">
-    <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
+    <img class="w-[4px] h-[18px] cursor-pointer" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
   <div class="w-[4px] h-[75%] border-[1px] ${colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${colorBorder.bg} absolute right-[-2px]"></div>
 `;
@@ -285,7 +285,7 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
   <button class="absolute top-3 left-3">
-    <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
+    <img class="w-[4px] h-[18px] cursor-pointer" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
   <div class="w-[4px] h-[75%] border-[1px] ${task.colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${task.colorBorder.bg} absolute right-[-2px]"></div>
 `;
