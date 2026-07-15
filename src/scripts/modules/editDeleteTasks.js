@@ -1,4 +1,23 @@
-  export function setupTaskOptions(tasks, taskObj, tasksList, saveTasks, updateCounter, updateDoneCounter, updatPicture) {
+let taskOptionsOutsideClickHandlerAdded = false;
+
+function hideAllTaskOptions() {
+  document.querySelectorAll(".optionsMenu").forEach((menu) => {
+    if (!menu.classList.contains("hidden")) {
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+    }
+  });
+}
+
+export function setupTaskOptions(
+  tasks,
+  taskObj,
+  tasksList,
+  saveTasks,
+  updateCounter,
+  updateDoneCounter,
+  updatPicture,
+) {
   const optionsBtn = tasks.querySelector(".optionBtn");
   const menu = tasks.querySelector(".optionsMenu");
   const editBtn = tasks.querySelector(".editBtn");
@@ -6,11 +25,23 @@
   const taskTitle = tasks.querySelector("h1");
   const taskExp = tasks.querySelector("p");
 
+  if (!taskOptionsOutsideClickHandlerAdded) {
+    document.addEventListener("click", () => {
+      hideAllTaskOptions();
+    });
+    taskOptionsOutsideClickHandlerAdded = true;
+  }
+
   optionsBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  menu.classList.toggle("hidden");
-  menu.classList.toggle("flex");
-});
+    e.stopPropagation();
+    hideAllTaskOptions();
+    menu.classList.toggle("hidden");
+    menu.classList.toggle("flex");
+  });
+
+  menu.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
   deleteBtn.addEventListener("click", () => {
     tasks.remove();

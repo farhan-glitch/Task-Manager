@@ -159,16 +159,16 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
 
-  <button class="optionBtn absolute top-3 left-3 cursor-pointer">
+  <button class="optionBtn absolute top-3 left-3 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-[#EBEDEF] text-text-secondary shadow-sm cursor-pointer">
     <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
 
-  <div class="optionsMenu hidden absolute top-8 left-3 w-[78px] h-[34px] bg-white border-[1px] border-[#EBEDEF] rounded-[4px] items-center gap-[10px] p-[5px] z-10">
-    <button class="editBtn cursor-pointer">
+  <div class="optionsMenu hidden absolute top-12 left-3 flex items-center justify-center gap-2 rounded-[10px] border border-[#EBEDEF] bg-white px-2 py-1 shadow-md z-10">
+    <button class="editBtn flex h-8 w-8 items-center justify-center rounded-md bg-white hover:bg-slate-100 cursor-pointer">
       <img src="./src/assets/icons/Tabler.svg" alt="edit" class="w-4 h-4" />
     </button>
     <div class="w-px h-5 bg-[#EBEDEF]"></div>
-    <button class="deleteBtn cursor-pointer">
+    <button class="deleteBtn flex h-8 w-8 items-center justify-center rounded-md bg-white hover:bg-slate-100 cursor-pointer">
       <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
     </button>
   </div>
@@ -329,16 +329,16 @@ export const initCreateReadTasks = () => {
     </p>
   </div>
 
-  <button class="optionBtn absolute top-3 left-3 cursor-pointer">
+  <button class="optionBtn absolute top-3 left-3 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-[#EBEDEF] text-text-secondary shadow-sm cursor-pointer">
     <img class="w-[4px] h-[18px]" src="./src/assets/icons/option.svg" alt="Edit-Task" />
   </button>
 
-  <div class="optionsMenu hidden absolute top-8 left-3 w-[78px] h-[34px] bg-white border-[1px] border-[#EBEDEF] rounded-[4px] items-center gap-[10px] p-[5px] z-10">
-    <button class="editBtn ${task.checked ? "hidden" : ""} cursor-pointer">
+  <div class="optionsMenu hidden absolute top-12 left-3 flex items-center justify-center gap-2 rounded-[10px] border border-[#EBEDEF] bg-white px-2 py-1 shadow-md z-10">
+    <button class="editBtn ${task.checked ? "hidden" : ""} flex h-8 w-8 items-center justify-center rounded-md bg-white hover:bg-slate-100 cursor-pointer">
       <img src="./src/assets/icons/Tabler.svg" alt="edit" class="w-4 h-4" />
     </button>
     <div class="w-px h-5 bg-[#EBEDEF] ${task.checked ? "hidden" : ""}"></div>
-    <button class="deleteBtn cursor-pointer">
+    <button class="deleteBtn flex h-8 w-8 items-center justify-center rounded-md bg-white hover:bg-slate-100 cursor-pointer">
       <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
     </button>
   </div>
