@@ -7,9 +7,10 @@
   const taskExp = tasks.querySelector("p");
 
   optionsBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.classList.toggle("hidden");
-  });
+  e.stopPropagation();
+  menu.classList.toggle("hidden");
+  menu.classList.toggle("flex");
+});
 
   deleteBtn.addEventListener("click", () => {
     tasks.remove();
@@ -23,7 +24,10 @@
 
   editBtn.addEventListener("click", () => {
     menu.classList.add("hidden");
+    menu.classList.remove("flex");
+
     let editPanel = tasks.nextElementSibling;
+
     const isEditPanel = editPanel && editPanel.classList.contains("editPanel");
 
     if (isEditPanel) {
