@@ -114,6 +114,17 @@ export const initCreateReadTasks = () => {
   }
 
   const readTask = document.getElementById("readTask");
+
+  function updateCompletedTaskSpacing() {
+    Array.from(doneTasks.children).forEach((taskCard) => {
+      taskCard.classList.remove("mb-6");
+    });
+
+    if (doneTasks.children.length > 0) {
+      doneTasks.lastElementChild.classList.add("mb-6");
+    }
+  }
+
   submit.addEventListener("click", () => {
     const colorSelected = allClose.some((c) => !c.classList.contains("hidden"));
 
@@ -131,7 +142,7 @@ export const initCreateReadTasks = () => {
     //==========================
 
     tasks.className =
-      "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
+      "relative flex min-h-[66px] w-full flex-row rounded-[12px] border-[1px] border-[#E9E9E9] px-4 py-3";
     tasks.innerHTML = `
   <input class="mt-1 self-start" type="checkbox" />
   <div class="flex flex-col gap-2 mr-6 flex-1">
@@ -221,6 +232,7 @@ export const initCreateReadTasks = () => {
         editBtn.classList.add("hidden");
         editDivider.classList.add("hidden");
         doneTasks.appendChild(tasks);
+        updateCompletedTaskSpacing();
       } else {
         taskTitle.classList.remove("line-through");
         taskBadge.style.display = "";
@@ -228,6 +240,7 @@ export const initCreateReadTasks = () => {
         editBtn.classList.remove("hidden");
         editDivider.classList.remove("hidden");
         readTask.appendChild(tasks);
+        updateCompletedTaskSpacing();
       }
 
       updateCounter();
@@ -299,7 +312,7 @@ export const initCreateReadTasks = () => {
       tasks.dataset.id = task.id;
 
       tasks.className =
-        "relative flex flex-row w-full min-h-[66px] border-[1px] border-[#E9E9E9] pb-[12px] pt-[12px] pr-[16px] pl-[16px] rounded-[12px] mt-4";
+        "relative flex min-h-[66px] w-full flex-row rounded-[12px] border-[1px] border-[#E9E9E9] px-4 py-3";
       tasks.innerHTML = `
   <input class="mt-1 self-start" type="checkbox" ${task.checked ? "checked" : ""} />
   <div class="flex flex-col gap-2 mr-6 flex-1">
@@ -360,6 +373,7 @@ export const initCreateReadTasks = () => {
           editBtn.classList.add("hidden");
           editDivider.classList.add("hidden");
           doneTasks.appendChild(tasks);
+          updateCompletedTaskSpacing();
         } else {
           taskTitle.classList.remove("line-through");
           taskBadge.style.display = "";
@@ -367,6 +381,7 @@ export const initCreateReadTasks = () => {
           editBtn.classList.remove("hidden");
           editDivider.classList.remove("hidden");
           readTask.appendChild(tasks);
+          updateCompletedTaskSpacing();
         }
 
         updateCounter();
