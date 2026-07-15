@@ -1,3 +1,5 @@
+import { setupTaskOptions } from "./editDeleteTasks.js";
+
 export const initCreateReadTasks = () => {
   const addingTask = document.getElementById("task-adder");
   const creatTask = document.getElementById("creatTask");
@@ -145,24 +147,38 @@ export const initCreateReadTasks = () => {
       ${expression.value}
     </p>
   </div>
-  <button class="absolute top-3 left-3">
+  <button class="optionBtn absolute top-3 left-3">
     <img class="w-[4px] h-[18px]" src="./src/images/option.svg" alt="Edit-Task" />
   </button>
+
+  <div class="optionsMenu hidden absolute top-8 left-3 bg-white border-[1px] border-[#E9E9E9] rounded-[8px] flex items-center gap-2 p-2 z-10">
+    <button class="editBtn">
+      <img src="./src/images/edit.svg" alt="edit" class="w-4 h-4" />
+    </button>
+    <div class="w-px h-5 bg-gray-300"></div>
+    <button class="deleteBtn">
+      <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
+    </button>
+  </div>
+
   <div class="w-[4px] h-[75%] border-[1px] ${colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${colorBorder.bg} absolute right-[-2px]"></div>
 `;
     readTask.appendChild(tasks);
 
     //===========================
-    tasksList.push({
+    const newTaskObj = {
       id: taskId,
       name: taskName.value,
       expression: expression.value,
       colorBorder: colorBorder,
       badge: badge,
       checked: false,
-    });
+    };
+    tasksList.push(newTaskObj);
     saveTasks();
     //============================
+
+    setupTaskOptions(tasks, newTaskObj, tasksList, saveTasks, updateCounter, updateDoneCounter, updatPicture);
 
     creatTask.classList.add("hidden");
     addingTask.classList.remove("hidden");
@@ -284,9 +300,20 @@ export const initCreateReadTasks = () => {
       ${task.expression}
     </p>
   </div>
-  <button class="absolute top-3 left-3">
+  <button class="optionBtn absolute top-3 left-3">
     <img class="w-[4px] h-[18px]" src="./src/images/option.svg" alt="Edit-Task" />
   </button>
+
+  <div class="optionsMenu hidden absolute top-8 left-3 bg-white border-[1px] border-[#EBEDEF] rounded-[8px] flex items-center gap-[10px] p-[5px] z-10">
+  <button class="editBtn">
+    <img src="./src/images/Tabler.svg" alt="edit" class="w-4 h-4" />
+  </button>
+  <div class="w-px h-5 bg-[#EBEDEF]"></div>
+  <button class="deleteBtn">
+    <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
+  </button>
+</div>
+
   <div class="w-[4px] h-[75%] border-[1px] ${task.colorBorder.border} rounded-t-[8px] rounded-b-[8px] ${task.colorBorder.bg} absolute right-[-2px]"></div>
 `;
 
@@ -323,6 +350,8 @@ export const initCreateReadTasks = () => {
         updateCounter();
         updateDoneCounter();
       });
+
+      setupTaskOptions(tasks, task, tasksList, saveTasks, updateCounter, updateDoneCounter, updatPicture);
     });
 
     updateCounter();
