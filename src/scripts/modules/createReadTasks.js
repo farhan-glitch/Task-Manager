@@ -153,11 +153,11 @@ export const initCreateReadTasks = () => {
   </button>
 
   <div class="optionsMenu hidden absolute top-8 left-3 w-[78px] h-[34px] bg-white border-[1px] border-[#EBEDEF] rounded-[4px] items-center gap-[10px] p-[5px] z-10">
-    <button class="editBtn">
+    <button class="editBtn cursor-pointer">
       <img src="./src/assets/icons/Tabler.svg" alt="edit" class="w-4 h-4" />
     </button>
     <div class="w-px h-5 bg-[#EBEDEF]"></div>
-    <button class="deleteBtn">
+    <button class="deleteBtn cursor-pointer">
       <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
     </button>
   </div>
@@ -321,11 +321,11 @@ export const initCreateReadTasks = () => {
   </button>
 
   <div class="optionsMenu hidden absolute top-8 left-3 w-[78px] h-[34px] bg-white border-[1px] border-[#EBEDEF] rounded-[4px] items-center gap-[10px] p-[5px] z-10">
-    <button class="editBtn ${task.checked ? "hidden" : ""}">
+    <button class="editBtn ${task.checked ? "hidden" : ""} cursor-pointer">
       <img src="./src/assets/icons/Tabler.svg" alt="edit" class="w-4 h-4" />
     </button>
     <div class="w-px h-5 bg-[#EBEDEF] ${task.checked ? "hidden" : ""}"></div>
-    <button class="deleteBtn">
+    <button class="deleteBtn cursor-pointer">
       <img src="./src/assets/icons/Trash.svg" alt="delete" class="w-4 h-4" />
     </button>
   </div>
