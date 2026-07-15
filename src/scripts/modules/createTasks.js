@@ -46,10 +46,10 @@ export const initCreateTasks = () => {
   });
 
   tags.addEventListener("click", () => {
-    if (img.src.includes("src/images/tag-right-1.svg")) {
-      img.src = "./src/images/tag-right-2.svg";
+    if (img.src.includes("src/assets/icons/tag-right-1.svg")) {
+      img.src = "./src/assets/icons/tag-right-2.svg";
     } else {
-      img.src = "./src/images/tag-right-1.svg";
+      img.src = "./src/assets/icons/tag-right-1.svg";
     }
 
     buttons.classList.toggle("hidden");
